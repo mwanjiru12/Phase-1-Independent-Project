@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-
 const searchBar = document.getElementById('search-bar');
 const searchButton = document.getElementById('search-button');
 const vehicleList = document.getElementById('vehicle-list');
