@@ -7,12 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
   getCars();
 
   function getCars() {
-    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json")
-      .then((response) => response.json())
-      .then((data) => {
-        displayCars(data.Results);
-      });
-  }
+    function getCars(page = 1, allCars = []) {
+      fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json&page=${page}`)
+        .then((response) => response.json())
+        .then((data) => {
+          const cars = data.Results;
+          allCars.push(...cars); // Append the new cars to the existing list
+          if (cars.length === 0) {
+            displayCars(allCars);
+          } else {
+            getCars(page + 1, allCars); // Fetch the next page
+          }
+        });
+    }}
 
   function displayCars(data) {
     let listItems = "";
