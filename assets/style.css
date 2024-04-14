@@ -71,6 +71,12 @@ li {
   cursor: pointer;
 }
 
+li:hover{
+  background:#020f06;
+  color: white;
+
+}
+
 li::before {
  /* content: ;/*
   /* Insert content that looks like bullets */
