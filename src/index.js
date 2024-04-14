@@ -32,19 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function displayVehicleType(vehicleId) {
     const selectedVehicle = document.querySelector(`[data-vehicle-id="${vehicleId}"]`);
-    const modelName = selectedVehicle.textContent.trim();
+    const makeId = selectedVehicle.dataset.vehicleId;
+    const makeName = selectedVehicle.textContent.trim();
   
-    fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeid?makeid=${vehicleId}&modelyear=2022&format=json`)
-      .then((response) => response.json())
-      .then((data) => {
-        const vehicle = data.Results.find((vehicle) => vehicle.ModelName === modelName);
-        if (vehicle) {
-          searchResults.innerHTML = `<p>MakeId: ${vehicle.MakeId}</p><p>Vehicle Type: ${vehicle.VehicleType}</p>`;
-        } else {
-          searchResults.innerHTML = "<p>Vehicle not found</p>";
-        }
-      });
+    // Display MakeId and MakeName
+    searchResults.innerHTML = `<p>MakeId: ${makeId}</p><p>MakeName: ${makeName}</p>`;
   }
+  
 
   function searchCars(query) {
     fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json")
