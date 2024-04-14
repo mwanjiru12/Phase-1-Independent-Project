@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   getCars();
 
   function getCars() {
-    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json")
+    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/merc?format=json")
       .then((response) => response.json())
       .then((data) => {
         displayCars(data.Results);
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function displayCars(data) {
     let listItems = "";
     data.forEach((car) => {
-      listItems += `<li data-vehicle-id="${car.MakeId}" class="vehicle-item">${car.MakeName}</li>`;
+      listItems += `<li data-vehicle-id="${car.MakeId}" data-vehicle-type="${car.VehicleTypeId}" class="vehicle-item">${car.MakeName}</li>`;
     });
     vehicleList.innerHTML = listItems;
 
@@ -26,23 +26,36 @@ document.addEventListener("DOMContentLoaded", () => {
     vehicleItems.forEach((item) => {
       item.addEventListener("click", () => {
         const vehicleId = item.dataset.vehicleId;
-        displayVehicleType(vehicleId);
+        const vehicleType = item.dataset.vehicleType;
+        displayVehicleType(vehicleId, vehicleType);
       });
     });
   }
 
-  function displayVehicleType(vehicleId) {
-    const selectedVehicle = document.querySelector(`[data-vehicle-id="${vehicleId}"]`);
-    const makeId = selectedVehicle.dataset.vehicleId;
-    const makeName = selectedVehicle.textContent.trim();
+  function displayVehicleType(makeId, vehicleType) {
+    const makeName = document.querySelector(`[data-vehicle-id="${makeId}"]`).textContent.trim();
   
     // Display MakeId and MakeName
-    searchResults.innerHTML = `<p>MakeId: ${makeId}</p><p>MakeName: ${makeName}</p>`;
+    searchResults.innerHTML = `<p>MakeId: ${makeId}</p><p>MakeName: ${makeName}</p><p>VehicleTypeName: ${getVehicleTypeName(vehicleType)}</p>`;
   }
   
+  function getVehicleTypeName(vehicleType) {
+    switch(vehicleType) {
+      case '2':
+        return 'Passenger Car';
+      case '3':
+        return 'Truck';
+      case '5':
+        return 'Bus';
+      case '7':
+        return 'Multipurpose Passenger Vehicle (MPV)';
+      default:
+        return 'Unknown';
+    }
+  }
 
   function searchCars(query) {
-    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json")
+    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/merc?format=json")
       .then((response) => response.json())
       .then((data) => {
         const results = data.Results.filter((car) => car.MakeName.toLowerCase().includes(query.toLowerCase()));
@@ -53,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function displaySearchResults(results) {
     let listItems = "";
     results.forEach((car) => {
-      listItems += `<li>${car.MakeName}</li>`;
+      listItems += `<li data-vehicle-id="${car.MakeId}" data-vehicle-type="${car.VehicleTypeId}" class="vehicle-item">${car.MakeName}</li>`;
     });
     searchResults.innerHTML = `<h2>Search Results</h2><ul>${listItems}</ul>`;
   }
