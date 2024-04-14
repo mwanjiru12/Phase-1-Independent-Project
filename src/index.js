@@ -1,5 +1,5 @@
-const searchButton = document.getElementById("search-button");
 const searchBar = document.getElementById("search-bar");
+const searchButton = document.getElementById("search-button");
 const vehicleList = document.getElementById("vehicle-list");
 const searchResults = document.getElementById("search-results");
 
@@ -57,7 +57,8 @@ function displaySearchResults(results) {
   searchResults.innerHTML = `<h2>Search Results</h2><ul>${listItems}</ul>`;
 }
 
-searchButton.addEventListener("click", () => {
+searchButton.addEventListener("click", (event) => {
+  event.preventDefault(); // Prevent the default form submission behavior
   const query = searchBar.value;
   if (query.length < 3) return;
   searchCars(query);
