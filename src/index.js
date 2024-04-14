@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         // Filter the results based on the query
-        const results = data.Results.filter((car) => car.MakeName.toLowerCase().includes(query.toLowerCase()));
+        const results = data.Results.filter((car) => car.VehicleTypeName.toLowerCase().includes(query.toLowerCase()));
         // Display the search results
         displaySearchResults(results);
       });
