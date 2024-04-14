@@ -3,9 +3,6 @@ const searchBar = document.getElementById("search-bar");
 const vehicleList = document.getElementById("vehicle-list");
 const searchResults = document.getElementById("search-results");
 
-
-
-
 function getCars() {
   fetch("db.json")
     .then((response) => response.json())
@@ -13,7 +10,6 @@ function getCars() {
       displayCars(data.Vehicles);
     });
 }
-
 
 function displayCars(data) {
   let listItems = "";
@@ -30,7 +26,6 @@ function displayCars(data) {
     });
   });
 }
-
 
 function displayVehicleType(vehicleId) {
   fetch("db.json")
@@ -54,7 +49,6 @@ function searchCars(query) {
     });
 }
 
-
 function displaySearchResults(results) {
   let listItems = "";
   results.forEach((car) => {
@@ -63,16 +57,10 @@ function displaySearchResults(results) {
   searchResults.innerHTML = `<h2>Search Results</h2><ul>${listItems}</ul>`;
 }
 
-
-
-
 searchButton.addEventListener("click", () => {
   const query = searchBar.value;
   if (query.length < 3) return;
   searchCars(query);
 });
-
-
-
 
 getCars();
