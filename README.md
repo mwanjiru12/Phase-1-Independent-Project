@@ -2,7 +2,7 @@
 For this project, I'm going build a Single Page Application (SPA). 
 </br>Building this application will be challenging because it will integrate everything I've learned up to this point. My frontend will be built with HTML, CSS, and JavaScript and will communicate with a public API.
 # Vehicle Type Finder
-
+https://mercedesinventorypp1.netlify.app/
 #### Date, 2024/04/15
 
 #### By  Maria Wanjiru
