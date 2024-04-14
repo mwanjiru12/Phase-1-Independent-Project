@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   getCars();
 
   function getCars() {
-    fetch("db.json")
+    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json")
       .then((response) => response.json())
       .then((data) => {
-        displayCars(data.Vehicles);
+        displayCars(data.Results);
       });
   }
 
@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function displayVehicleType(vehicleId) {
-    fetch("db.json")
+    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/" + vehicleId + "?format=json")
       .then((response) => response.json())
       .then((data) => {
-        const vehicle = data.Vehicles.find((v) => v.MakeId === parseInt(vehicleId));
+        const vehicle = data.Results[0];
         if (vehicle) {
-          searchResults.innerHTML = `<p>MakeId: ${vehicle.MakeId}</p>`;
+          searchResults.innerHTML = `<p>MakeId: ${vehicle.MakeId}</p><p>Model: ${vehicle.ModelName}</p>`;
         } else {
           searchResults.innerHTML = "<p>Vehicle not found</p>";
         }
@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function searchCars(query) {
-    fetch("db.json")
+    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json")
       .then((response) => response.json())
       .then((data) => {
-        const results = data.Vehicles.filter((car) => car.MakeName.toLowerCase().includes(query.toLowerCase()));
+        const results = data.Results.filter((car) => car.MakeName.toLowerCase().includes(query.toLowerCase()));
         displaySearchResults(results);
       });
   }
