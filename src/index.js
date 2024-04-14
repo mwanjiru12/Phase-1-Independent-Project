@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Create a list of cars
     let listItems = "";
     data.forEach((car) => {
-      listItems += `<li data-vehicle-id="${car.MakeId}" data-vehicle-type="${car.VehicleTypeId}" class="vehicle-item">${car.MakeName}</li>`;
+      listItems += `<li data-make-id="${car.MakeId}" data-vehicle-type="${car.VehicleTypeId}" class="vehicle-item">${car.MakeName}</li>`;
     });
     // Display the list of cars
     vehicleList.innerHTML = listItems;
@@ -34,37 +34,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const vehicleItems = document.querySelectorAll(".vehicle-item");
     vehicleItems.forEach((item) => {
       item.addEventListener("click", () => {
-        const vehicleId = item.dataset.vehicleId;
+        const makeId = item.dataset.makeId;
         const vehicleType = item.dataset.vehicleType;
-        // Display the vehicle type
-        displayVehicleType(vehicleId, vehicleType);
+        // Display the vehicle type and make id
+        displayVehicleType(makeId, vehicleType);
       });
     });
   }
 
   // Define the displayVehicleType function
   function displayVehicleType(makeId, vehicleType) {
-    const makeName = document.querySelector(`[data-vehicle-id="${makeId}"]`).textContent.trim();
+    const makeName = document.querySelector(`[data-make-id="${makeId}"]`).textContent.trim();
+    const vehicleTypeName = getVehicleTypeName(vehicleType);
   
-    // Display MakeId and MakeName
-    searchResults.innerHTML = `<p>MakeId: ${makeId}</p><p>MakeName: ${makeName}</p><p>VehicleTypeName: ${getVehicleTypeName(vehicleType)}</p>`;
+    // Display MakeId, MakeName, and VehicleTypeName
+    searchResults.innerHTML = `<p>MakeId: ${makeId}</p><p>MakeName: ${makeName}</p><p>VehicleTypeName: ${vehicleTypeName}</p>`;
   }
 
   // Define the getVehicleTypeName function
   function getVehicleTypeName(vehicleType) {
-    // Return the vehicle type name based on the vehicle type
-    switch(vehicleType) {
-      case '2':
-        return 'Passenger Car';
-      case '3':
-        return 'Truck';
-      case '5':
-        return 'Bus';
-      case '7':
-        return 'Multipurpose Passenger Vehicle (MPV)';
-      default:
-        return 'Unknown';
-    }
+    const vehicleTypes = {
+      '2': 'Passenger Car',
+      '3': 'Truck',
+      '5': 'Bus',
+      '7': 'Multipurpose Passenger Vehicle (MPV)',
+      '10': 'Incomplete Vehicle',
+      '1': 'Motorcycle',
+      '6': 'Trailer'
+    };
+    return vehicleTypes[vehicleType] || 'Unknown';
   }
 
   // Define the searchCars function
@@ -85,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Create a list of search results
     let listItems = "";
     results.forEach((car) => {
-      listItems += `<li data-vehicle-id="${car.MakeId}" data-vehicle-type="${car.VehicleTypeId}" class="vehicle-item">${car.MakeName}</li>`;
+      listItems += `<li data-make-id="${car.MakeId}" data-vehicle-type="${car.VehicleTypeId}" class="vehicle-item">${car.MakeName}</li>`;
     });
     // Display the list of search results
     searchResults.innerHTML = `<h2>Search Results</h2><ul>${listItems}</ul>`;
