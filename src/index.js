@@ -11,21 +11,6 @@ function getCars() {
     });
 }
 
-function displayCars(data) {
-  let listItems = "";
-  data.forEach((car) => {
-    listItems += `<li data-vehicle-id="${car.MakeId}" class="vehicle-item">${car.MakeName}</li>`;
-  });
-  vehicleList.innerHTML = listItems;
-
-  const vehicleItems = document.querySelectorAll(".vehicle-item");
-  vehicleItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      const vehicleId = item.dataset.vehicleId;
-      displayVehicleType(vehicleId);
-    });
-  });
-}
 
 function displayVehicleType(vehicleId) {
   fetch("db.json")
