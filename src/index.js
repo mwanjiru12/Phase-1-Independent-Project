@@ -33,7 +33,7 @@ function displayVehicleType(vehicleId) {
     .then((data) => {
       const vehicle = data.Vehicles.find((v) => v.MakeId === parseInt(vehicleId));
       if (vehicle) {
-        searchResults.innerHTML = `<p>Vehicle Type: ${vehicle.VehicleTypeName}</p>`;
+        searchResults.innerHTML = `<p>MakeId: ${vehicle.MakeId}</p>`;
       } else {
         searchResults.innerHTML = "<p>Vehicle not found</p>";
       }

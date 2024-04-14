@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(rgba(255, 254, 253, 0.7), rgba(255, 254, 253, 0.9)),
+  background: linear-gradient(rgba(255, 254, 253, 0.5), rgba(255, 254, 253, 0.7)),
     url("bg.png") center center fixed;
   background-size: cover;
   text-align: center;
@@ -9,6 +9,7 @@ body {
   justify-content: center;
   align-items: left;
   margin: 0;
+  padding: 0;
   padding-top: 60px; /* Add padding to the top of the body to prevent the content from scrolling onto the nav bar */
 }
 
@@ -18,11 +19,11 @@ nav {
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
+  padding: 5px;
 }
 
 h1 {
-  font-size: xx-large;
+  font-size: 18px;
   font-weight: 900;
   color: black
 }
@@ -30,12 +31,9 @@ h1 {
 /* Split the screen in half */
 .split {
   height: 100%;
-  width: 50%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
+    width: 50%;
+    position: fixed;
+    overflow-y: auto;
 }
 
 /* Control the left side */
@@ -43,17 +41,12 @@ h1 {
   left: 0;
 }
 
-/* Control the right side */
-.right {
-  right: 0;
-}
-
 /* If you want the content centered horizontally and vertically */
 .centered {
-  position: absolute;
-  top: 17%;
-  left: 20%;
-  margin: auto transform:translate(-50%, -50%);
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
 }
 
 ul {
@@ -66,13 +59,9 @@ ul {
   border-radius: 5px;
 }
 
-ol{
-
-}
-
 li {
   /*padding-left: 16px; */
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.2);
   padding: 10px;
   border-bottom: 1px solid #ddd;
   font-size: large;
@@ -88,6 +77,11 @@ li::before {
   /* color: blue; /* Or a color you prefer */
 }
 
+.right {
+  right: 0;
+}
+
+
 #search-bar {
   width: 50%;
   padding: 10px;
@@ -95,6 +89,7 @@ li::before {
   border-radius: 25px;
   border: 1px solid #ccc;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
 }
 
 
@@ -115,7 +110,7 @@ li::before {
 }
 
 p {
-  background: rgba(0, 0, 0, 0.3);
+  /*background: rgba(0, 0, 0, 0.3);*/
   padding: 10px;
   border-bottom: 1px solid #ddd;
   font-size: large;
