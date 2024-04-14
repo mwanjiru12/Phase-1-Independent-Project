@@ -31,15 +31,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function displayVehicleType(vehicleId) {
-    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/" + vehicleId + "?format=json")
+    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car/?format=json")
       .then((response) => response.json())
       .then((data) => {
-        const vehicle = data.Results[0];
-        if (vehicle) {
-          searchResults.innerHTML = `<p>MakeId: ${vehicle.MakeId}</p><p>Model: ${vehicle.ModelName}</p>`;
-        } else {
-          searchResults.innerHTML = "<p>Vehicle not found</p>";
-        }
+        const vehicle = data.Vehicles.find((v) => v.MakeId === parseInt(vehicleId));
+      if (vehicle) {
+        searchResults.innerHTML = `<p>MakeId: ${vehicle.MakeId}</p>`;
+      } else {
+        searchResults.innerHTML = "<p>Vehicle not found</p>";
+      }
       });
   }
 
