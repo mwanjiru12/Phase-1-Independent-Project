@@ -32,7 +32,7 @@ You can download the project files from the GitHub repository and run it on your
 
 ### Live Link
 
-https://github.com/mwanjiru12/Phase-1-Independent-Project
+https://mercedesinventorypp1.netlify.app/
 ## Usage
 
 To launch the application, follow these steps:

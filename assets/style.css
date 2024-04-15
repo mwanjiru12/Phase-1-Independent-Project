@@ -130,6 +130,13 @@ h2{
   font-weight: 900;
   color: black
 }
+
+h4{
+  font-size: 10px;
+  font-style: italic;
+  font-weight: 300;
+  color: black;
+}
 p {
   /*background: rgba(0, 0, 0, 0.3);*/
   padding: 10px;
