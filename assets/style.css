@@ -88,7 +88,8 @@ li::before {
 position: relative;
   top: 10%;
   transform: translateY(-50%);
-  text-align: center;
+  text-align: center ;
+  padding-top: 80%;
 }
 
 .right {
