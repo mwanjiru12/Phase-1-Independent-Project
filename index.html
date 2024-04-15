@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
- <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Mercedes Inventory</title>
-   <link rel="stylesheet" href="assets/style.css" />
- </head>
- <body>
-   <nav>
-     <h1>~MERCEDES VEHICLE INVENTORY~</h1>
-   </nav>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercedes Inventory</title>
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+<nav>
+    <h1>~MERCEDES VEHICLE INVENTORY~</h1>
+</nav>
 
+<div class="split left">
+    <div class="centered">
+        <ul id="vehicle-list"></ul>
+    </div>
+</div>
 
-   <div class="split left">
-     <div class="centered">
-       <ul id="vehicle-list"></ul>
-     </div>
-   </div>
+<div class="split right">
+    <div class="right-centered" id="search-results">
 
+        <input type="text" id="search-bar" placeholder="Search by Vehicle Type...">
+        <button id="search-button">Search</button>
 
-   <div class="split right">
-     <div class="right-centered" id="search-results">
-      
-       <input type="text" id="search-bar" placeholder="Search by Vehicle Type...">
-       <button id="search-button">Search</button>
-       <div id="vehicle-details">
+        <h2>Search Results</h2>
+        <ul id="search-results-list"></ul>
 
-       </div>
-       <h2>Search Results</h2>
-     </div>
-   </div>
-   <script src ="/src/index.js"> </script>
-  </body>
+        <div id="vehicle-details"></div>
+    </div>
+</div>
+
+<script src="/src/index.js"></script>
+</body>
 </html>
